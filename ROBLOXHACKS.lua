@@ -6,7 +6,7 @@ screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 -- Frame behind buttons
 local buttonFrame = Instance.new("Frame")
 buttonFrame.Size = UDim2.new(0, 220, 0, 300)
-buttonFrame.Position = UDim2.new(0, 10, 0.5, -195) -- Centering the frame
+buttonFrame.Position = UDim2.new(0, 10, 0.5, -150) -- Adjusted positioning
 buttonFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 buttonFrame.BackgroundTransparency = 0.3
 buttonFrame.BorderSizePixel = 0
@@ -57,6 +57,7 @@ flyButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
 flyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 flyButton.Parent = buttonFrame
 
+-- State variables and mouse object
 local highlighted = false
 local beams = {}
 local distanceLabels = {}
@@ -202,10 +203,10 @@ end
 
 -- Function to enable walking through walls
 local function toggleWalkThroughWalls()
+    local character = game.Players.LocalPlayer.Character
     if canWalkThroughWalls then
         canWalkThroughWalls = false
         walkThroughWallsButton.Text = "Walk Through Walls"
-        local character = game.Players.LocalPlayer.Character
         for _, part in pairs(character:GetChildren()) do
             if part:IsA("BasePart") then
                 part.CanCollide = true
@@ -214,8 +215,5 @@ local function toggleWalkThroughWalls()
     else
         canWalkThroughWalls = true
         walkThroughWallsButton.Text = "Disable Walk Through Walls"
-        local character = game.Players.LocalPlayer.Character
         for _, part in pairs(character:GetChildren()) do
             if part:IsA("BasePart") then
-                part.CanCollide = false
-            end
